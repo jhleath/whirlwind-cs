@@ -1,0 +1,413 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+
+    <title>CS 1501 - Introduction Lecture</title>
+
+    <meta name="description" content="Introduction Lecture for CS 1501  - A Whirlwind Introduction to CS">
+    <meta name="author" content="Hunter Leath">
+
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+
+    <link rel="stylesheet" href="css/reveal.css">
+    <link rel="stylesheet" href="css/theme/moon.css" id="theme">
+
+    <!-- Code syntax highlighting -->
+    <link rel="stylesheet" href="lib/css/zenburn.css">
+
+    <!-- Printing and PDF exports -->
+    <script>
+      var link = document.createElement( 'link' );
+      link.rel = 'stylesheet';
+      link.type = 'text/css';
+      link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+      document.getElementsByTagName( 'head' )[0].appendChild( link );
+    </script>
+
+    <!--[if lt IE 9]>
+	<script src="lib/js/html5shiv.js"></script>
+	<![endif]-->
+  </head>
+
+  <body>
+
+    <div class="reveal">
+
+      <!-- Any section element inside of this container is displayed as a slide -->
+      <div class="slides">
+        
+        <section>
+          <h2>Welcome to CS 1501</h2>
+          <h5>A Whirlwind Introduction to CS</h5>
+
+          <hr/>
+
+          <p>Instructor: Hunter Leath</p>
+          <p><a href="http://whirlwindcs.org">whirlwindcs.org</a></p>
+        </section>
+
+        <section>
+          <h3>About Me</h3>
+          
+          <ul>
+            <li>4th Year, SEAS</li>
+            <li>Computer Science, Economics, Engineering Business Minor</li>
+            <li>Previously Researched and Interned!</li>
+            <li>From Atlanta, Georgia</li>
+            <li>Email: <i>jhl4qf@virginia.edu</i></li>
+          </ul>
+
+          <aside class="notes">
+            You guys are welcome to use me as a resource for anything of these things. Don't feel limited
+            to the class topics.
+          </aside>
+        </section>
+
+        <section>
+          <h3>About You</h3>
+
+          <ul>
+            <li>Self-Motivated</li>
+            <li>Interested in Computers as a Concept</li>
+          </ul>
+
+          <aside class="notes">
+            The purpose of this class is to teach you how the computer works, so I am expecting you to be
+            excited about the material that we will talk about. Since this is a one credit seminar, you
+            will not have to worry about grades as much. However, I do hope that you end up getting something
+            out of the course.
+          </aside>
+        </section>
+
+        <section>
+          <h3>Expectations</h3>
+
+          <ol>
+            <li>Be nice.</li>
+            <li>Be accepting.</li>
+            <li>Have fun!</li>
+          </ol>
+
+          <aside class="notes">
+            Computer Science is notorious for not being beginner friendly. I think that this is absolutely horrible,
+            and I want everyone in this class to feel welcome regardless of previously experience.
+          </aside>
+        </section>
+
+        <section>
+          <h3>Grading and Work</h3>
+
+          <h4>Very little!</h4>
+
+          <aside class="notes">
+            The goal of this course is to help students understand the majority of concepts that are used to
+            build a computer. It is not supposed to be a burden on your schedule. Therefore, the grades will be
+            mostly attendance based. Although, there may be a simple final paper that discusses what portion of the
+            computer students would change and why.
+          </aside>
+        </section>
+
+        <section>
+          <h3>Textbook</h3>
+
+          <h4>None*</h4>
+
+          <small>* but I will probably post optional readings from around the web</small>
+
+          <aside class="notes">
+            Textbooks cost money, simple as that. I will provide any readings that I find useful online. Depending on
+            time, they may be optional for interested students. There are several books and other courses that cover
+            CS in the same manner as this one, and I will provide you links to them.
+          </aside>
+        </section>
+
+        <section>
+          <h2>So... What is this class?</h2>
+
+          <table>
+            <tbody>
+              <tr>
+                <td>Electricity</td>
+                <td>Operating Systems</td>
+              </tr>
+              <tr>
+                <td>Transistors</td>
+                <td>Peripherals</td>
+              </tr>
+              <tr>
+                <td>Digital Logic</td>
+                <td>Networking</td>
+              </tr>
+              <tr>
+                <td>Clocks</td>
+                <td>Websites</td>
+              </tr>
+              <tr>
+                <td>Registers</td>
+                <td>Algorithms</td>
+              </tr>
+              <tr>
+                <td>Memory</td>
+                <td>Special Bonus Topic!</td>
+              </tr>
+            </tbody>
+          </table>
+        </section>
+
+        <section data-background="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5c/Microchips.jpg/1024px-Microchips.jpg">
+          <h3>Let's Begin</h3>
+          <h2>Computers, Electricity, Transistors</h2>
+        </section>
+
+        <section>
+          <h3>Is it a computer?</h3>
+
+          <p><img width="500px" src="https://upload.wikimedia.org/wikipedia/commons/b/be/Slide_rule_cursor.jpg"></p>
+          <blockquote class="fragment" cite="https://en.wikipedia.org/wiki/Slide_rule">
+            The slide rule, also known colloquially in the United States as a slipstick, is a <b>mechanical analog computer</b>.
+          </blockquote>
+        </section>
+
+        <section>
+          <h3>What is a computer?</h3>
+
+          <blockquote cite="http://dictionary.reference.com/browse/computer">
+            computer (noun): a person who computes; computist.
+          </blockquote>
+
+          <blockquote cite="http://dictionary.reference.com/browse/compute">
+            compute (verb): to determine by calculation; reckon; calculate
+          </blockquote>
+
+          <small>circa 1640</small>
+
+          <aside class="notes">
+            It is important to note that the term computer was around long before the "computers"
+            we think about (and will study in this course) came about. This wasn't even derogatory!
+          </aside>
+        </section>
+
+        <section>
+          <h2>Anything can be a computer.</h2>
+          <p>We just have a narrow definition today.</p>
+
+          <aside class="notes">
+            In fact, we had "Computer Scientists" well before we had computers as well (although they
+            were generally Mathematicians). They studied "processes," and examined what was effectively
+            "computable."
+          </aside>
+        </section>
+        
+        <section>
+          <h3>What is a computer?</h3>
+
+          <blockquote cite="http://dictionary.reference.com/browse/computer">
+            computer (noun): mechanical calculating machine
+          </blockquote>
+
+          <p>
+            <img width="320px" src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/8b/Babbage_Difference_Engine.jpg/640px-Babbage_Difference_Engine.jpg">
+          </p>
+
+          <small>circa 1897, Babbage's machine is from 1822</small>
+        </section>
+        
+        <section>
+          <h3>What is a computer?</h3>
+
+          <blockquote cite="http://dictionary.reference.com/browse/computer">
+            computer (noun): programmable digital electronic computer
+          </blockquote>
+
+          <p>
+            <img width="320px" src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4e/Eniac.jpg/628px-Eniac.jpg">
+          </p>
+
+          <small>circa 1945</small>
+        </section>
+
+        <section>
+          <h3>Why the transition?</h3>
+          
+          <p>Moving parts are:</p>
+          
+          <ul>
+            <li>Slow</li>
+            <li>Unreliable</li>
+            <li>Expensive</li>
+          </ul>
+
+          <aside class="notes">
+            It is important to realize how fickle the real world is
+            when we attempt to interact with it. Mini USB (the port on
+            your old Motorola Razr) was rated for 5000 insertions over
+            the lifecycle of the device. Now, micro USB (the port on
+            your Android phone) is rated for 10000. Compare that to
+            your processor which has billions of operations
+            occur <i>every second</i>.
+          </aside>
+        </section>
+
+        <section>
+          <h3>Electricity</h3>
+          <h5>It's shocking!</h5>
+
+          <p>
+            <img width="600px" src="/lectures/img/introduction/ball_thing.jpg">
+          </p>
+        </section>
+
+        <section>
+          <h3>Electricity</h3>
+          <h2>It's basically just gravity.</h2>
+
+          <small>ask any Scientist*.</small>
+        </section>
+
+        <section>
+          <h3>Electricity Defined</h3>
+
+          <table>
+            <thead>
+              <tr>
+                <th>Electricity</th>
+                <th>Gravitational Analog</th>
+                <th>Unit</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Electric Potential</td>
+                <td>Height</td>
+                <td>Volt (V)</td>
+              </tr>
+              <tr>
+                <td>Current</td>
+                <td>Mass</td>
+                <td>Amp (A)</td>
+              </tr>
+              <tr>
+                <td>Resistance</td>
+                <td>Levers</td>
+                <td>Ohms</td>
+              </tr>
+            </tbody>
+          </table>
+        </section>
+
+        <section>
+          <h3>A missing component:</h3>
+          <h2>The Switch!</h2>
+        </section>
+
+        <section data-background="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e9/Elektronenroehren-auswahl.jpg/1024px-Elektronenroehren-auswahl.jpg">
+          <h1 style="background: #002B36;">Vacuum Tubes</h1>
+        </section>
+
+        <section>
+          <p>
+            <img width="500px"
+                 style="background:white;"
+                 src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/ba/Triode-english-text.svg/451px-Triode-english-text.svg.png">
+          </p>
+        </section>
+
+        <section>
+          <h3>The Transistor</h3>
+          <small>Solid State!</small>
+
+          <p>
+            <img width="500px"
+                 src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e1/Transbauformen.jpg/800px-Transbauformen.jpg">
+          </p>
+        </section>
+
+        <section>
+          <h3>The Key was Semiconductors</h3>
+
+          <p>
+            <img style="background: white;"
+                 src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a9/Bipolar_Junction_Transistor_NPN_Structure.svg/317px-Bipolar_Junction_Transistor_NPN_Structure.svg.png">
+          </p>
+        </section>
+
+        <section>
+          <blockquote cite="https://en.wikipedia.org/wiki/Transistor">
+            The transistor is the key active component in practically
+            all modern electronics. Many consider it to be one of the
+            greatest inventions of the 20th century.
+          </blockquote>
+        </section>
+
+        <section>
+          <h3>Moore's Law</h3>
+
+          <p>
+            <img style="background: white;" width="500px" src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/00/Transistor_Count_and_Moore%27s_Law_-_2011.svg/667px-Transistor_Count_and_Moore%27s_Law_-_2011.svg.png">
+          </p>
+        </section>
+
+        <section data-background="https://upload.wikimedia.org/wikipedia/commons/2/2b/80486DX2_200x.png">
+          <h3 style="background: #002B36;">Integrated Circuits</h3>
+        </section>
+
+        <section>
+          <p>
+            <img width="500px"
+                 src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/ff/ICC_2008_Poland_Silicon_Wafer_1_edit.png/673px-ICC_2008_Poland_Silicon_Wafer_1_edit.png">
+          </p>
+
+          <small>really, really, ridiculously small</small>
+        </section>
+
+        <section>
+          <h3>Printing and Fabrication</h3>
+
+          <p>
+            <img style="background: white;"
+                 src="https://upload.wikimedia.org/wikipedia/commons/a/aa/Silicon_chip_3d.png">
+          </p>
+        </section>
+
+        <section>
+          <h3>See you next week!</h3>
+        </section>
+      </div>
+
+    </div>
+
+    <script src="lib/js/head.min.js"></script>
+    <script src="js/reveal.js"></script>
+
+    <script>
+
+      // Full list of configuration options available at:
+      // https://github.com/hakimel/reveal.js#configuration
+      Reveal.initialize({
+      controls: true,
+      progress: true,
+      history: true,
+      center: true,
+      slideNumber: true,
+
+      transition: 'slide', // none/fade/slide/convex/concave/zoom
+
+      // Optional reveal.js plugins
+      dependencies: [
+      { src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+      { src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+      { src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+      { src: 'plugin/highlight/highlight.js', async: true, condition: function() { return !!document.querySelector( 'pre code' ); }, callback: function() { hljs.initHighlightingOnLoad(); } },
+      { src: 'plugin/zoom-js/zoom.js', async: true },
+      { src: 'plugin/notes/notes.js', async: true }
+      ]
+      });
+
+    </script>
+
+  </body>
+</html>
