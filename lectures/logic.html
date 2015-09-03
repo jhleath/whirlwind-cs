@@ -1,0 +1,648 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+
+    <title>CS 1501 - Boolean Logic</title>
+
+    <meta name="description" content="Introduction Lecture for CS 1501  - A Whirlwind Introduction to CS">
+    <meta name="author" content="Hunter Leath">
+
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+
+    <link rel="stylesheet" href="css/reveal.css">
+    <link rel="stylesheet" href="css/theme/moon.css" id="theme">
+
+    <!-- Code syntax highlighting -->
+    <link rel="stylesheet" href="lib/css/zenburn.css">
+
+    <!-- Printing and PDF exports -->
+    <script>
+      var link = document.createElement( 'link' );
+      link.rel = 'stylesheet';
+      link.type = 'text/css';
+      link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+      document.getElementsByTagName( 'head' )[0].appendChild( link );
+    </script>
+
+    <!--[if lt IE 9]>
+	<script src="lib/js/html5shiv.js"></script>
+	<![endif]-->
+  </head>
+
+  <body>
+
+    <div class="reveal">
+
+      <!-- Any section element inside of this container is displayed as a slide -->
+      <div class="slides">
+        
+        <section>
+          <h2>From Transistors to Logic</h2>
+          <h5>CS 1501 - Lecture 2</h5>
+          <h5>Thursday, September 3</h5>
+        </section>
+
+        <section>
+          <h3>Information that I forgot about last class...</h3>
+
+          <ul>
+            <li>Professor Evans is our faculty advisor.</li>
+            <li>Email <i>me (jhl4qf)</i> if you are still on the waitlist.</li>
+            <li>Email <i>me</i> for feedback.</li>
+            <li>Fill out an information form if you weren't here.</li>
+          </ul>
+        </section>
+
+        <section>
+          <h3>Quick Recap of Last Class...</h3>
+
+          <ul>
+            <li>
+              Why did we move from mechanical to electrical machines?
+
+              <p class="fragment" style="color: #A00B59;">
+                <small>
+                  Cheaper, Faster, More Reliable
+                </small>
+              </p>
+            </li>
+            <li>
+              What does a transistor do?
+
+              <p class="fragment" style="color: #A00B59;">
+                <small>
+                  Functions like a switch so that we can control electrical current.
+                </small>
+              </p>
+            </li>
+          </ul>
+        </section>
+
+        <section>
+          <h3>Working with Transistors</h3>
+          <p>
+            <img style="background-color: white;" src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/37/Transistor.symbol.npn.svg/240px-Transistor.symbol.npn.svg.png">
+          </p>
+
+          <ul>
+            <li class="fragment">What if the transistor switch is "on"?</li>
+            <li class="fragment">What if the transistor switch is "off"?</li>
+          </ul>
+        </section>
+
+        <section>
+          <h3>Switching Gears...</h3>
+          <h2>Boolean Algebra</h2>
+        </section>
+
+        <section>
+          <h2>Two Values</h2>
+
+          <p>True and False</p>
+          <p class="fragment">1 and 0</p>
+        </section>
+
+        <section>
+          <h2>AND Gates \( \land \)</h2>
+
+          <table>
+            <thead>
+              <tr>
+                <th>A</th>
+                <th>B</th>
+                <th>A \( \land \) B</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>False</td>
+                <td>False</td>
+                <td>False</td>
+              </tr>
+              <tr>
+                <td>False</td>
+                <td>True</td>
+                <td>False</td>
+              </tr>
+              <tr>
+                <td>True</td>
+                <td>False</td>
+                <td>False</td>
+              </tr>
+              <tr>
+                <td>True</td>
+                <td>True</td>
+                <td>True</td>
+              </tr>
+            </tbody>
+          </table>
+        </section>
+
+        <section>
+          <p>
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/99/Venn0001.svg/640px-Venn0001.svg.png">
+          </p>
+          <p>A \( \land \) B</p>
+        </section>
+
+        <section>
+          <h2>OR Gates \( \lor \)</h2>
+
+          <table>
+            <thead>
+              <tr>
+                <th>A</th>
+                <th>B</th>
+                <th>A \( \lor \) B</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>False</td>
+                <td>False</td>
+                <td>False</td>
+              </tr>
+              <tr>
+                <td>False</td>
+                <td>True</td>
+                <td>True</td>
+              </tr>
+              <tr>
+                <td>True</td>
+                <td>False</td>
+                <td>True</td>
+              </tr>
+              <tr>
+                <td>True</td>
+                <td>True</td>
+                <td>True</td>
+              </tr>
+            </tbody>
+          </table>
+        </section>
+
+        <section>
+          <p>
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/30/Venn0111.svg/640px-Venn0111.svg.png">
+          </p>
+          <p>A \( \lor \) B</p>
+        </section>
+
+        <section>
+          <h2>NOT Gates \( \lnot \)</h2>
+
+          <table>
+            <thead>
+              <tr>
+                <th>A</th>
+                <th>\( \lnot \) A</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>False</td>
+                <td>True</td>
+              </tr>
+              <tr>
+                <td>True</td>
+                <td>False</td>
+              </tr>
+            </tbody>
+          </table>
+        </section>
+
+        <section>
+          <h3>What is the venn diagram for NOT gates?</h3>
+        </section>
+
+        <section>
+          <h3>Let's go through some examples.</h3>
+        </section>
+
+        <section>
+          <h3>Sleeping in Class</h3>
+
+          <p>I have two variables, and I need to know if I am asleep during lecture.</p>
+
+          <ul>
+            <li>A - Lecture is exciting.</li>
+            <li>B - I got enough sleep last night.</li>
+          </ul>
+
+          <p class="fragment">
+            \( (\lnot A) \land (\lnot B) \)
+          </p>
+
+          <p class="fragment">
+            \( \lnot (A \lor B) \)
+          </p>
+
+          <p class="fragment">
+            This is called DeMorgan's Law.
+          </p>
+        </section>
+
+        <section>
+          <h3>Eating Chipotle</h3>
+
+          <p>I have three variables, and I want to know if I should go eat at Chipotle.</p>
+
+          <ul>
+            <li>A - I am hungry.</li>
+            <li>B - Chipotle is open.</li>
+            <li>C - There is food in my apartment.</li>
+          </ul>
+
+          <p class="fragment">
+            \( (A \land B) \land (\lnot C) \) 
+          </p>
+        </section>
+
+        <section>
+          <h3>Building Gates from Transistors</h3>
+        </section>
+
+        <section>
+          <h3>AND Gate</h3>
+
+          <p>
+            <img style="background-color: white;" src="http://hyperphysics.phy-astr.gsu.edu/hbase/electronic/ietron/and4.gif">
+          </p>
+        </section>
+
+        <section>
+          <h3>OR Gate</h3>
+
+          <p>
+            <img style="background-color: white;" src="http://hyperphysics.phy-astr.gsu.edu/hbase/electronic/ietron/or4.gif">
+          </p>
+        </section>
+        
+        <section>
+          <h3>NOT Gate</h3>
+
+          <p>
+            What would the circuit for a NOT gate look like?
+          </p>
+        </section>
+
+        <section>
+          <h3>Hobbyist Gates</h3>
+
+          <p>
+            <img style="background-color: white;" src="http://hyperphysics.phy-astr.gsu.edu/hbase/electronic/ietron/nand3.gif">
+          </p>
+        </section>
+
+        <section>
+          <h3>Gate Circuit Symbols</h3>
+
+          <table>
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Symbol</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td style="vertical-align: middle;">AND</td>
+                <td>
+                  <img style="background-color: white;" height="100px" src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/64/AND_ANSI.svg/320px-AND_ANSI.svg.png">
+                </td>
+              </tr>
+              <tr>
+                <td style="vertical-align: middle;">OR</td>
+                <td>
+                  <img style="background-color: white;" height="100px" src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b5/OR_ANSI.svg/320px-OR_ANSI.svg.png">
+                </td>
+              </tr>
+              <tr>
+                <td style="vertical-align: middle;">NOT</td>
+                <td>
+                  <img style="background-color: white;" height="100px" src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/bc/NOT_ANSI.svg/320px-NOT_ANSI.svg.png">
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </section>
+
+        <section>
+          <h3>Let's build some circuits.</h3>
+
+          <ol>
+            <li>Sleeping Circuit</li>
+            <li>Chipotle Circuit</li>
+            <li>Pav Circuit</li>
+            <li>(De)Coder</li>
+            <li>(De)Muxer</li>
+            <li>Adder</li>
+          </ol>
+        </section>
+
+        <section>
+          <h3>Pav Circuit</h3>
+
+          <p>
+            The Pav wants to limit the Five Guys line to just 5 people
+            in order to reduce congestion. Design the circuit.
+          </p>
+        </section>
+
+        <section>
+          <table>
+            <thead>
+              <tr>
+                <th>\(2 ^ 2 = 4\)</th>
+                <th>\(2 ^ 1 = 2\)</th>
+                <th>\(2 ^ 0 = 1\)</th>
+                <th>Should close line</th>
+            </thead>
+            <tbody>
+              <tr>
+                <td>0</td>
+                <td>0</td>
+                <td>0</td>
+                <td>0</td>
+              </tr>
+              <tr>
+                <td>0</td>
+                <td>0</td>
+                <td>1</td>
+                <td>0</td>
+              </tr>
+              <tr>
+                <td>0</td>
+                <td>1</td>
+                <td>0</td>
+                <td>0</td>
+              </tr>
+              <tr>
+                <td>0</td>
+                <td>1</td>
+                <td>1</td>
+                <td>0</td>
+              </tr>
+              <tr>
+                <td>1</td>
+                <td>0</td>
+                <td>0</td>
+                <td>0</td>
+              </tr>
+              <tr>
+                <td>1</td>
+                <td>0</td>
+                <td>1</td>
+                <td>0</td>
+              </tr>
+              <tr>
+                <td>1</td>
+                <td>1</td>
+                <td>0</td>
+                <td>1</td>
+              </tr>
+              <tr>
+                <td>1</td>
+                <td>1</td>
+                <td>1</td>
+                <td>1</td>
+              </tr>
+            </tbody>
+          </table>
+        </section>
+
+        <section>
+          <h3>Encoder</h3>
+
+          <p>
+            Design a circuit that has 2 inputs and returns the highest
+            numbered input that has a 1. It should also have an output
+            saying if anything is on.
+          </p>
+
+          <table class="fragment">
+            <thead>
+              <tr>
+                <th>Line 0</th>
+                <th>Line 1</th>
+                <th>Any On</th>
+                <th>Highest Line</th>
+            </thead>
+            <tbody>
+              <tr>
+                <td>0</td>
+                <td>0</td>
+                <td>0</td>
+                <td>0</td>
+              </tr>
+              <tr>
+                <td>1</td>
+                <td>0</td>
+                <td>1</td>
+                <td>0</td>
+              </tr>
+              <tr>
+                <td>0</td>
+                <td>1</td>
+                <td>1</td>
+                <td>1</td>
+              </tr>
+              <tr>
+                <td>1</td>
+                <td>1</td>
+                <td>1</td>
+                <td>1</td>
+              </tr>
+            </tbody>
+          </table>
+        </section>
+
+        <section>
+          <h3>Muxer</h3>
+
+          <p>
+            Design a circuit that has 2 input lines and 1 control
+            line. We get the output from the line specified on the
+            control line.
+          </p>
+          
+          <table class="fragment">
+            <thead>
+              <tr>
+                <th>Control Line</th>
+                <th>Output</th>
+            </thead>
+            <tbody>
+              <tr>
+                <td>0</td>
+                <td>Line 0</td>
+              </tr>
+              <tr>
+                <td>1</td>
+                <td>Line 1</td>
+              </tr>
+            </tbody>
+          </table>
+        </section>
+
+        <section>
+          <h3>Half-Adder</h3>
+
+          <p>
+            Let's add two binary numbers.
+          </p>
+
+          <table class="fragment">
+            <thead>
+              <tr>
+                <th>A</th>
+                <th>B</th>
+                <th>A + B</th>
+            </thead>
+            <tbody>
+              <tr>
+                <td>0</td>
+                <td>0</td>
+                <td>0</td>
+              </tr>
+              <tr>
+                <td>1</td>
+                <td>0</td>
+                <td>1</td>
+              </tr>
+              <tr>
+                <td>0</td>
+                <td>1</td>
+                <td>1</td>
+              </tr>
+              <tr>
+                <td>1</td>
+                <td>1</td>
+                <td>?</td>
+              </tr>
+            </tbody>
+          </table>
+        </section>
+
+        <section>
+          <h3>Full-Adder</h3>
+
+          <p>
+            Let's add two binary numbers (redux). \[A, B, C_{in} \implies A + B, C_{out}\]
+          </p>
+        </section>
+
+        <section>
+          <h3>Combinatorial Logic</h3>
+
+          <p>
+            All computers use combinatorial logic. Especially seeing a
+            comeback in Bitcoin as Field Programmable Gate Arrays
+            (FPGA).
+          </p>
+        </section>
+
+        <section>
+          <h3>What else do we need for universal computers?</h3>
+          <h2 class="fragment">Memory</h2>
+        </section>
+
+        <section>
+          <h3>What does the following circuit do?</h3>
+
+          <p>
+            <img src="https://cdn.sparkfun.com/assets/learn_tutorials/2/1/6/34-sr-latch-nand.png">
+          </p>
+        </section>
+
+        <section>
+          <h3>SR Latch Truth Table</h3>
+
+          <table>
+            <thead>
+              <tr>
+                <th>S</th>
+                <th>R</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>0</td>
+                <td>0</td>
+                <td>Not Allowed</td>
+              </tr>
+              <tr>
+                <td>0</td>
+                <td>1</td>
+                <td>Q = 1</td>
+              </tr>
+              <tr>
+                <td>1</td>
+                <td>0</td>
+                <td>Q = 0</td>
+              </tr>
+              <tr>
+                <td>1</td>
+                <td>1</td>
+                <td>No Change</td>
+              </tr>
+            </tbody>
+          </table>
+        </section>
+
+        <section>
+          <h2>Questions? Comments? Concerns?</h2>
+        </section>
+      </div>
+
+    </div>
+
+    <script src="lib/js/head.min.js"></script>
+    <script src="js/reveal.js"></script>
+
+    <script>
+
+     // Full list of configuration options available at:
+     // https://github.com/hakimel/reveal.js#configuration
+     Reveal.initialize({
+         controls: true,
+         progress: true,
+         history: true,
+         center: true,
+         slideNumber: true,
+
+         transition: 'slide', // none/fade/slide/convex/concave/zoom
+         
+         math: {
+             mathjax: 'https://cdn.mathjax.org/mathjax/latest/MathJax.js',
+             config: 'TeX-AMS_HTML-full'  // See http://docs.mathjax.org/en/latest/config-files.html
+         },
+         
+         // Optional reveal.js plugins
+         dependencies: [
+             { src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+             { src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+             { src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+             { src: 'plugin/highlight/highlight.js', async: true, condition: function() { return !!document.querySelector( 'pre code' ); }, callback: function() { hljs.initHighlightingOnLoad(); } },
+             { src: 'plugin/zoom-js/zoom.js', async: true },
+             { src: 'plugin/notes/notes.js', async: true },
+             { src: 'plugin/math/math.js', async: true }
+         ]
+     });
+
+     Reveal.addEventListener( 'fragmentshown', function( event ) {
+         setTimeout(
+             function() {
+                 MathJax.Hub.Rerender(document.querySelector(".slides .present"))
+             }, 100); 
+     } );
+
+    </script>
+
+  </body>
+</html>
