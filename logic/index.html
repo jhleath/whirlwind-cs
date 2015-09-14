@@ -1,0 +1,172 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Information about Circuits / Logisim</title>
+    <link href="/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/css/styles.css" rel="stylesheet">
+  </head>
+  <body>
+    <div class="container">
+      <h2>Circuits and Logisim Information</h2>
+      <h5><a href="/">&laquo; Home</a></h5>
+
+      <div class="row">
+        <div class="col-md-4">
+          <p>
+            In the past few classes, we have been utilizing the
+            Logisim program in order to examine simple circuits and
+            their behaviors. This page will give you links to the
+            files we were using, the program, and instructions on how
+            to use it.
+          </p>
+
+          <h3>Resources</h3>
+          <ul>
+            <li>
+              <a href="http://www.cburch.com/logisim/download.html">
+                Download Logisim
+              </a>
+            </li>
+            <li>
+              <a href="/logic/circuits.circ">Circuits from Boolean Algebra Lecture</a>
+            </li>
+            <li>
+              <a href="/logic/state.circ">Circuits from State Lecture</a>
+            </li>
+          </ul>
+
+          <h3>Using the Files</h3>
+
+          <p>
+            Each of the provided Logisim files contains
+            several <i>Circuits</i> which have the functions that we
+            have examined in class. You will see a list of circuits at
+            the top part of left pane. You can double click on the
+            circuits in order to view and edit them.
+          </p>
+
+          <p>
+            It is important to note that Logisim has two separate
+            modes when working with the circuits files: editing and
+            running. In the top left of the program, you will see two
+            important icons: one that looks like a hand and one that
+            looks like a cursor. <b>In order to toggle the buttons
+            (green dots) or clock (green squiggle), you must have
+            selected the hand icon in the top left.</b> Similarly, in
+            order to edit the circuit (place new gates or wires, you
+            must have the cursor selected in the top left.
+          </p>
+
+          <p>
+            The files each have the following circuits. Be sure to go
+            back to the slides to get information about circuits that
+            you do not remember.
+          </p>
+
+          <h4><a href="/logic/circuits.circ">circuits.circ</a></h4>
+
+          <p>
+            This file contains the combinatoral logic that we talked
+            about in the Boolean Algebra Lecture.
+          </p>
+
+          <ol>
+            <li>
+              <b>sleeping</b> - The circuit that determined (with high
+              accuracy) whether a student was asleep or not during a
+              lecture.
+            </li>
+            <li>
+              <b>chipotle</b> - The circuit that determined whether I
+              was eating Chipotle for dinner (or lunch? or
+              breakfast...?).
+            </li>
+            <li>
+              <b>pav</b> - The circuit that determined whether the
+              number of people in the Five Guys line at the Pav was
+              greater than 5.
+            </li>
+            <li>
+              <b>encoder</b> - The circuit that tells you which input
+              line is "ON".
+            </li>
+            <li>
+              <b>muxer</b> - The circuit that tells you the status of
+              one of the input lines.
+            </li>
+            <li>
+              <b>half-adder</b> - A circuit that adds two one-bit
+              numbers.
+            </li>
+            <li>
+              <b>full-adder</b> - A circuit that adds two one-bit
+              numbers, but allows a carry-over digit to come into the
+              calculation.
+            </li>
+            <li>
+              <b>ripple-carry</b> - A circuit that adds two very large
+              numbers (8 bits / 8 wires long) by utilizing a bunch of
+              the full-adders.
+            </li>
+            <li>
+              <b>sr latch</b> - The first introduction of memory that
+              we looked at in class.
+            </li>
+          </ol>
+
+          <h4><a href="/logic/state.circ">state.circ</a></h4>
+
+          <p>
+            This file contains the simple counters that we talked
+            about in the State Lecture.
+          </p>
+
+          <ol>
+            <li>
+              <b>simple</b> - A circuit that utilizes a simple
+              Flip-Flop. Try changing the value of the flip flop by
+              toggling the clock (the squiggly icon).
+            </li>
+            <li>
+              <b>counter</b> - A circuit that counts the number of
+              people in line at Five Guys. Remember that the value is
+              only updated in memory when the clock is toggled. It
+              utilizes our adder, a simple flip flop, and a
+              comparator.
+            </li>
+            <li>
+              <b>counter3</b> - A circuit that allows the Five Guys
+              employees to specify whether they have lots of staff
+              today or not. This adds a muxer to the previous circuit.
+            </li>
+          </ol>
+
+          <h3>Creating New Circuits</h3>
+
+          <p>
+            Since the purpose of this class is understanding and
+            exploration, I encourage interested students to play
+            around in Logisim to get a feel for the program and how
+            the different components work. You can make a new circuit
+            by clicking the green plus icon in the top left of the
+            screen. After naming it, you can place components in the
+            middle by selecting the right component in the left menu,
+            then clicking the area in the workspace to the right to
+            place. You can then drag between contacts in order to add
+            wiring. Using this method, you can not only place the
+            included components (pins, gates, etc.) but also the
+            circuits that we have added. Note how the Ripple-Adder
+            circuit in the circuits.circ file contains several of the
+            full-adders we designed.
+          </p>
+
+          <p>
+            If you think you have designed a cool circuit, feel free
+            to email it to me to show off!
+          </p>
+          <br/>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
