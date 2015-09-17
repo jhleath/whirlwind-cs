@@ -1,0 +1,150 @@
+* CS 1501 Syllabus
+
+** Transistors to Logic
+
+*** Recap of Last Class
+
+- Why did we move from mechanical to electrical machines?
+- What does a transistor do?
+
+*** Symbol for a Transistor
+
+[[https://upload.wikimedia.org/wikipedia/commons/thumb/3/37/Transistor.symbol.npn.svg/240px-Transistor.symbol.npn.svg.png][Transistor Symbol Link]]
+
+*** Introduction of Schematic Diagrams
+
+**** When the transistor "switch" is on?
+
+- What happens if the wire is a '1'?
+- What happens if the wire is a '0'?
+
+**** When the transistor "switch" is off?
+
+- High Impedance State
+- State can be overridden by other wires.
+
+*** Introduction of Boolean Logic
+
+**** History
+
+- Introduced by George Boole in 1847 book "The Mathematical Analysis
+  of Logic".
+- The term "Boolean Algebra" came about in 1913 by Henry Sheffer
+
+** Logic to State
+
+*** Recap of Last Class
+
+- What are the three main "gates" of Boolean Logic?
+- What is the circuit for ...?
+
+*** Review of Circuits
+
+*** What are we missing from our circuits to make them a general computer?
+
+While the answer here is of course memory, the students may be
+confused through our earlier definition of "computer" as an
+input/output device.
+
+I'm hoping that we can make a distinction between the concept of the
+computer and the computers that we actually use every day.
+
+**** Introduction to Theory of Computation
+
+To continue our discussion about what a computer is from the first
+class, we will formally introduce Theory of Computation. When we talk
+about "computers", it turns out that some versions of computers are
+more powerful that others. We formalize this notion by talking about
+the types of problems that certain machines are able to solve.
+
+When speaking about these problem classes, you will often hear the
+words "language" to represent the actual problem. The hierarchy of
+problems that is most used is called the Chomsky hierarchy (named
+after Noam Chomsky at MIT).
+
+The circuits that we have been dealing with up until this point have
+fallen pretty low on the totem poll due to their lack of memory. They
+are unable to solve interesting types of problems (such as counting up
+to a number).
+
+***** Turing Machines
+
+The most powerful types of machines that are studied is a Turing
+Machine. While it can solve the most difficult problems, there are
+still problems that are undecidable in this model of computation (the
+Halting problems) and this was a huge discovery in the 1940s. The
+Turing machine is named after our favorite early Computer Scientist,
+Alan Turing. *Give some Turing background, enigma, gay, death.* The
+Nobel prize for Computer Science is named after him.
+
+The formalization of a Turing machine involves a long string of
+tape. The machine itself is able to look at a single value of the
+tape, look up its rules in a table, write a new symbol down, and
+either moving left or right.
+
+That may sound super simple, but it is the most powerful formalism for
+a computer possible. We will talk more about the interesting things
+that can be done with a Turing Machine next week, actually.
+
+***** Differences between Computers and Turing Machines
+
+- What about your computer either makes or doesn't make it a Turing
+  machine?
+- Is your computer more or less powerful than a Turing machine?
+- Is it possible to build a Turing machine?
+
+Students may talk about how the Turing machine doesn't actually have
+input or output, while this is an important difference between real
+world computers and Turing machines, it does not make a difference for
+the complexity of the problems that we are able to reason about.
+
+***** Key Takeaway from Turing Machines
+
+Turing machines can compute on a problem for an infinite amount of
+time and never "finish". This is a key feature of the Turing machine
+and a general indication that we have reached it in terms of
+complexity. Before a machine or language can be considered Turing
+complete (equivalent in power to a Turing machines), it must have the
+ability to continue computing forever (whether it is counting to
+infinity or any other unsolvable problem).
+
+*** Introduction to State
+
+In order to count up to infinity, we need some sort of memory to hold
+the numbers that we are counting to (this is equivalent to the tape in
+the example of the Turing machine). While we often see this listed as
+"memory" when we buy a computer, the term used in computer science is
+"state". 
+
+**** Historical Context
+
+- Mercury Delay Line Memory
+
+- Random Access Memory
+
+  Note here that we are not actually covering the specifics of Random
+  Access Memory, instead relying on registers and caching.
+
+- Caching...
+
+**** What does this circuit do?
+
+Introduce the SR Latch for storing a single bit of information.
+
+*** Introduction of the Clock
+
+**** Why do we need a clock?
+
+**** From Latches to Flip Flops
+
+*** Building Counters
+
+** General Processor
+** Programming in the Abstract
+** General Program
+** Interfacing with the User
+** Internet
+** HTTP
+** Algorithms, Abstractions
+** Computers Everywhere
+** Bonus Lecture
