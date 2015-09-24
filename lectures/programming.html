@@ -1,0 +1,500 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+
+        <title>CS 1501 - Programming Computers</title>
+
+        <meta name="description" content="Introduction Lecture for CS 1501  - A Whirlwind Introduction to CS">
+        <meta name="author" content="Hunter Leath">
+
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+
+        <link rel="stylesheet" href="css/reveal.css">
+        <link rel="stylesheet" href="css/theme/moon.css" id="theme">
+
+        <!-- Code syntax highlighting -->
+        <link rel="stylesheet" href="lib/css/zenburn.css">
+
+        <!-- Printing and PDF exports -->
+        <script>
+         var link = document.createElement( 'link' );
+         link.rel = 'stylesheet';
+         link.type = 'text/css';
+         link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+         document.getElementsByTagName( 'head' )[0].appendChild( link );
+        </script>
+
+        <!--[if lt IE 9]>
+	<script src="lib/js/html5shiv.js"></script>
+	<![endif]-->
+    </head>
+
+    <body>
+
+        <div class="reveal">
+
+            <!-- Any section element inside of this container is displayed as a slide -->
+            <div class="slides">
+                <section>
+                    <h2>Programming</h2>
+                    <h5>CS 1501 - Lecture 5</h5>
+                    <h5>Thursday, September 24</h5>
+                </section>
+
+                <section>
+                    <h2>Recap from last class...</h2>
+
+                    <ol>
+                        <li>Components inside Processors</li>
+                        <li>"Programming" the Processor</li>
+                        <li>Running the Processor
+                    </ol>
+                </section>
+
+                <section>
+                    <h2>Parts of Our CPU</h2>
+
+                    <ol>
+                        <li>Arithmetic Logic Unit (ALU) - Does all the math.</li>
+                        <li>Instruction Memory - Holds the Program.</li>
+                        <li>Program Counter - Tell us where we are in the program.</li>
+                        <li>Jump Unit - Helps us jump around the program.</li>
+                        <li>Register File - Used as simple memory for variables.</li>
+                    </ol>
+                </section>
+
+                <section>
+                    <h2>Our "Program"</h2>
+                    <pre><code data-trim>
+# x is input
+0: x = x - 2
+1: if x > 0: goto 0
+2: y = 1
+3: if x == 0: goto 5
+4: y = 0
+5: halt
+                    </pre></code>
+
+                    <p class="fragment">
+                        In order to run this program, we had to <i>translate</i> the
+                        instructions into the binary that the
+                        processor actually recognized.
+                    </p>
+                </section>
+
+                <section>
+                    <h2>Binary Translation of Program</h2>
+                    <pre><code data-trim>
+#: _A_ _B_ _Z_ _OP _J_
+0: 001 000 010 000 000
+1: 000 001 000 010 000
+2: 000 111 000 000 010
+3: 010 000 001 000 000
+4: 000 111 110 000 001
+5: 010 000 000 000 000
+6: 111 111 111 111 111
+                    </pre></code>
+                </section>
+
+                <section>
+                    <h2>Assembly of Program</h2>
+                    <pre><code class="python" data-trim>
+#: _A_ _B_ _Z_ _OP _J_
+0: 001 000 010 000 000 <- set r1 2      (z = 2)
+1: 000 001 000 010 000 <- sub r0 r1 r0  (x = x - z)
+2: 000 111 000 000 010 <- jgt r0 r7 0   (if x > 0: goto 0)
+3: 010 000 001 000 000 <- set r2 1      (y = 1)
+4: 000 111 110 000 001 <- je  r0 r7 6   (if x == 0: goto 6)
+5: 010 000 000 000 000 <- set r2 0      (y = 0)
+6: 111 111 111 111 111 <- halt          (halt)
+                    </pre></code>
+
+                    <p class="fragment">
+                        One instruction refers to one line in machine
+                        code. Note the addition of the first line
+                        which was not present in the original program.
+                    </p>
+                </section>
+
+                <section>
+                    <h2>Assemblers</h2>
+
+                    <p>
+                        \( a(p_t) = p_b \)
+                    </p>
+
+                    <ul>
+                        <li>\( p_t \) is the <i>text</i> of the program.</li>
+                        <li>\( p_b \) is the <i>binary code</i> of the program.</li>
+                    </ul>
+                </section>
+
+                <section>
+                    <h2>Historical Perspective</h2>
+
+                    <ol>
+                        <li>First computers come about in 1940s.</li>
+                        <li>Programmed in machine code (binary).</li>
+                        <li>Assembly code comes around by 1949.</li>
+                    </ol>
+                </section>
+
+                <section>
+                    <h3>Writing an Assembler</h3>
+                    <ol>
+                        <li>
+                            How were the first assembly translators
+                            written?
+                        </li>
+                        <li class="fragment">
+                            How about the second ones?
+                        </li>
+                        <li class="fragment">
+                            What if a new processor came out?
+                        </li>
+                    </ol>
+                </section>
+
+                <section>
+                    <h3>Bootstrapping</h3>
+
+                    <p>
+                        We want to build a program that assembles (or
+                        compiles) a subset of the langauge, then use
+                        that to write the full compiler.
+                    </p>
+                </section>
+
+                <section>
+                    <p>
+                        <img style="background-color: white; padding: 10px;" src="img/programming/compilers.png">
+                    </p>
+                </section>
+
+                <section>
+                    <h2>Let's go even higher...</h2>
+
+                    <p>
+                        When programmers used either Machine Code
+                        (binary) or Assembly, they were working with
+                        the assumption that each statement they wrote
+                        would be used to represent a single
+                        instruction.
+                    </p>
+
+                    <p class="fragment">
+                        Pros: Programmers can write programs
+                        significantly easier.
+                    </p>
+
+                    <p class="fragment">
+                        Cons: It is much more difficult to reason
+                        about program speed.
+                    </p>
+                </section>
+
+                <section>
+                    <h2>"High Level" Programming Languages Today</h2>
+
+                    <h5>Java</h5>
+
+                    <pre><code data-trim>
+public class IsEven {
+    public static bool isEven(int x) {
+        while (x > 0)
+            x -= 2;
+        if (x < 0)
+            return false;
+        return true;
+    }
+}
+                    </code></pre>
+                </section>
+
+                <section>
+                    <h2>"High Level" Programming Languages Today</h2>
+
+                    <h5>Python</h5>
+
+                    <pre><code data-trim>
+def isEven(x):
+  while x < 0:
+    x -= 2
+  if (x < 0):
+    return False
+  return True
+                    </code></pre>
+                </section>
+
+                <section>
+                    <h2>"High Level" Programming Languages Today</h2>
+
+                    <h5>Haskell</h5>
+
+                    <pre><code data-trim>
+isEven :: int -> bool
+isEven x = isEven (x - 2)
+isEven 0 = true
+isEven -1 = false
+                    </code></pre>
+                </section>
+
+                <section>
+                    <h2>Programming Languages in a Nutshell</h2>
+                    
+                    <ul>
+                        <li>
+                            Lots of different types of programming
+                            languages out there.
+                        </li>
+                        <li>
+                            Each one defines what kinds of
+                            instructions need to be present.
+                        </li>
+                        <li>
+                            Additionally, they all <i>add</i> extra
+                            information that is not relevant to the
+                            processor running the program.
+                        </li>
+                        <li>
+                            Each one requires a <i>translator</i> to
+                            turn the code that you are writing
+                            (letters) into binary instructions
+                            (compiler or interpreter).
+                        </li>
+                    </ul>
+                </section>
+
+                <section>
+                    <p>Programming was invented because of women in computing.</p>
+                    <img class="stretch" style="padding: 10px; border-style:none;"src="img/programming/pioneers.png">
+                </section>
+
+                <section>
+                    <h3>How do we write this translator?</h3>
+
+                    <p class="fragment">Let's build a programming language!</p>
+                </section>
+
+                <section>
+                    <h3>A simple programming language: INT</h3>
+
+                    <p>Types of expressions:</p>
+                    
+                    <pre><code>def id(arg0, arg1, ... argN) = E</code></pre>
+                    <pre><code>int, id</code></pre>
+                    <pre><code>if E1 = E2 then E3 else E4</code></pre>
+                    <pre><code>E1 + E2</code></pre>
+                    <pre><code>E1 - E2</code></pre>
+                    <pre><code>id(E1, ... EN)</code></pre>
+                </section>
+
+                <section>
+                    <h2>A simple program in our language:</h2>
+                    
+                    <pre><code data-trim>
+def fib(x) = if x = 1 then 0 else
+               if x = 2 then 1 else
+                 fib(x - 1) + fib(x - 2)
+                    </code></pre>
+                </section>
+
+                <section>
+                    <h2>Code Generation</h2>
+
+                    <p>
+                        We want a recursive function \( cgen(e) = c \)
+                        which takes in an expression (program) \( e \)
+                        and returns assembly \( c \).
+                    </p>
+
+                    <p class="fragment">
+                        It will generate code that always puts the
+                        answer in register r1, and we allow it to use
+                        the other 7 registers (t1, ... t6) as
+                        temporary registers.
+                    </p>
+                </section>
+
+                <section>
+                    <h2>Generating Assembly?</h2>
+
+                    <pre><code class="haskell" data-trim>
+cgen(e1 + e2) =
+  cgen(e1)       ;; put the result in r1
+  cgen(e2)       ;; put the result in r1?
+  add r1 <- ?
+                    </code></pre>
+                </section>
+
+                <section>
+                    <h3>Generating Assembly: The Phantom Menace</h3>
+
+                    <pre><code class="haskell" data-trim>
+cgen(e1 + e2) =
+  cgen(e1)
+  push r1        ;; put the answer in memory
+  cgen(e2)
+  pop t1         ;; get the answer from memory
+  add r1 <- t1 r1
+                    </code></pre>
+                </section>
+
+                <section>
+                    <h3>Generating Assembly: Attack of the Clones</h3>
+
+                    <pre><code class="haskell" data-trim>
+cgen(if e1 = e2 then e3 else e4) =
+  cgen(e1)
+  push r1
+  cgen(e2)
+  pop t1
+  beq r1 t1 true_branch
+  cgen(e4)
+  jmp end_if
+true_branch:
+  cgen(e3)
+end_if:
+                    </code></pre>
+                </section>
+
+                <section>
+                    <h3>Generating Assembly: Revenge of the Sith</h3>
+
+                    <pre><code class="haskell" data-trim>
+cgen(id(arg0, ... argN) = E) =
+id:
+  arguments come from... somewhere
+  cgen(E)
+  result goes... somewhere
+                    </code></pre>
+
+                    <pre><code class="haskell" data-trim>
+cgen(id(arg0, ... argN)) =
+  cgen(arg0)
+  cgen(arg1)
+  ...
+  cgen(argN)
+  put arguments somewhere?
+  jmp id
+                    </code></pre>
+
+                    <p>We get to choose these things because it is our language!</p>
+                </section>
+
+                <section>
+                    <h2>How many lines of code are in the programs we use everyday?</h2>
+
+                    <ol>
+                        <li>iPhone App: <span class="fragment">up to 10,000</span></li>
+                        <li>Windows (1993): <span class="fragment">~2.5 million</span></li>
+                        <li>Google Chrome: <span class="fragment">~6 million</span></li>
+                        <li>Android: <span class="fragment">~12 million</span></li>
+                        <li>Microsoft Office (2013): <span class="fragment">~44 million</span></li>
+                        <li>Mac OS X 10.4: <span class="fragment">~85 million</span></li>
+                        <li>Google (All Services): <span class="fragment">~2 billion</span></li>
+                    </ol>
+                </section>
+
+                <section>
+                    <h2>Stuff we covered today:</h2>
+
+                    <ul>
+                        <li>Assembly, Assemblers</li>
+                        <li>Code Generation, Compilation</li>
+                        <li>Calling Convention</li>
+                    </ul>
+
+                    <br/><br/>
+
+                    <h2>Stuff we didn't talk about today:</h2>
+
+                    <ul>
+                        <li>Lexing - What symbols have we written?</li>
+                        <li>Parsing - What do the symbols mean?</li>
+                        <li>Type Checking - Are the programmers using the correct types?</li>
+                        <li>Optimization - Can we make the program faster?</li>
+                        <li>Intepretation - Can we run the program on the fly?</li>
+                    </ul>
+                </section>
+
+                <section>
+                    <p>
+                        We talked about the construction of
+                        <b>transistors</b> as electrical switches. We
+                        used those to build <b>logic gates</b> for
+                        boolean algebra. We added in <b>state</b> by
+                        creating feedback of logic gates, and suddenly
+                        we could store memory and count. Next, we
+                        built a <b>processor</b> with our logic
+                        components and state that runs <i>any
+                        program</i> expressed as binary.
+                    </p>
+
+                    <p>
+                        Today, we talked about how <b>programs are
+                        compiled</b> to be run on our simple processor
+                        so we didn't have to program in binary.
+                    </p>
+                </section>
+
+                <section>
+                    <h2>Questions? Comments? Concerns?</h2>
+
+                    <p>
+                        Examples stolen shamelessly from Wes Weimer's
+                        Code Generation Lecture in 4610.
+                    </p>
+                </section>
+            </div>
+
+        </div>
+
+        <script src="lib/js/head.min.js"></script>
+        <script src="js/reveal.js"></script>
+
+        <script>
+
+         // Full list of configuration options available at:
+         // https://github.com/hakimel/reveal.js#configuration
+         Reveal.initialize({
+             controls: true,
+             progress: true,
+             history: true,
+             center: true,
+             slideNumber: true,
+
+             transition: 'slide', // none/fade/slide/convex/concave/zoom
+             
+             math: {
+                 mathjax: 'https://cdn.mathjax.org/mathjax/latest/MathJax.js',
+                 config: 'TeX-AMS_HTML-full'  // See http://docs.mathjax.org/en/latest/config-files.html
+             },
+             
+             // Optional reveal.js plugins
+             dependencies: [
+                 { src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+                 { src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+                 { src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+                 { src: 'plugin/highlight/highlight.js', async: true, condition: function() { return !!document.querySelector( 'pre code' ); }, callback: function() { hljs.initHighlightingOnLoad(); } },
+                 { src: 'plugin/zoom-js/zoom.js', async: true },
+                 { src: 'plugin/notes/notes.js', async: true },
+                 { src: 'plugin/math/math.js', async: true }
+             ]
+         });
+
+         Reveal.addEventListener( 'fragmentshown', function( event ) {
+             setTimeout(
+                 function() {
+                     MathJax.Hub.Rerender(document.querySelector(".slides .present"))
+                 }, 100); 
+         } );
+
+        </script>
+
+    </body>
+</html>
