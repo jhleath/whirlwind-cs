@@ -1,0 +1,447 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+
+        <title>CS 1501 - Networking</title>
+
+        <meta name="description" content="Introduction Lecture for CS 1501  - A Whirlwind Introduction to CS">
+        <meta name="author" content="Hunter Leath">
+
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+
+        <link rel="stylesheet" href="css/reveal.css">
+        <link rel="stylesheet" href="css/theme/moon.css" id="theme">
+
+        <!-- Code syntax highlighting -->
+        <link rel="stylesheet" href="lib/css/zenburn.css">
+
+        <!-- Printing and PDF exports -->
+        <script>
+         var link = document.createElement( 'link' );
+         link.rel = 'stylesheet';
+         link.type = 'text/css';
+         link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+         document.getElementsByTagName( 'head' )[0].appendChild( link );
+        </script>
+
+        <!--[if lt IE 9]>
+	<script src="lib/js/html5shiv.js"></script>
+	<![endif]-->
+    </head>
+
+    <body>
+
+        <div class="reveal">
+
+            <!-- Any section element inside of this container is displayed as a slide -->
+            <div class="slides">
+                <section>
+                    <h2>Networking</h2>
+                    <h5>CS 1501 - Lecture 9</h5>
+                    <h5>Thursday, October 22</h5>
+                </section>
+
+                <section>
+                    <h2>Recap: Networking</h2>
+
+                    <p>Two different types of networks:</p>
+
+                    <ul>
+                        <li>
+                            Circuit Switched
+                            <span class="fragment">
+                                - Direct connection, Telephone System
+                            </span>
+                        </li>
+                        <li>
+                            Packet Switched
+                            <span class="fragment">
+                                - Shared connections, Internet
+                            </span>
+                        </li>
+                    </ul>
+                </section>
+
+                <section>
+                    <h2>Recap: Networking</h2>
+
+                    <p>
+                        <img src="https://cs3240team16.files.wordpress.com/2012/08/webserver-backbone-sm.gif"/>
+                    </p>
+
+                    <p>
+                        It works just like your home network, but on a
+                        large scale.
+                    </p>
+                </section>
+
+                <section>
+                    <h2>Recap: Networking</h2>
+
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Layer</th>
+                                <th>Name</th>
+                                <th>Function</th>
+                                <th>Example</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>1</td>
+                                <td>Physical</td>
+                                <td>Wiring</td>
+                                <td>Ethernet Cable</td>
+                            </tr>
+                            <tr>
+                                <td>2</td>
+                                <td>Link</td>
+                                <td>Transfer Data</td>
+                                <td>Ethernet Protocol</td>
+                            </tr>
+                            <tr>
+                                <td>3</td>
+                                <td>Network</td>
+                                <td>Packet Transfer</td>
+                                <td>Internet Protocol (IP)</td>
+                            </tr>
+                            <tr>
+                                <td>4</td>
+                                <td>Transport</td>
+                                <td>Circuit</td>
+                                <td>Transmission Control Protocol (TCP)</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </section>
+
+                <section>
+                    <h2>Recap: Networking</h2>
+
+                    <h3>TCP / IP</h3>
+
+                    <ul>
+                        <li>
+                            IP: Provides an address that locates you
+                            around the internet. Doesn't care about the
+                            underlying network.
+                        </li>
+                        <li>
+                            TCP: Emulates a circuit for reliable data
+                            transfer.
+                        </li>
+                    </ul>
+                </section>
+
+                <section>
+                    <h2>Recap: Networking</h2>
+
+                    <p>How did we do this?</p>
+
+                    <p>
+                        <img width="75%"
+                             src="http://www.cisco.com/web/about/ac123/ac147/images/ipj/ipj_7-3/anatomy_figure_1.gif"/>
+                    </p>
+
+                    <p>
+                        Add a data header with all the information we
+                        need!
+                    </p>
+                </section>
+
+                <section>
+                    <h2>TCP Ports</h2>
+
+                    <p>Each computer gets</p>
+
+                    <h4>one IP address</h4>
+
+                    <p>but might want to run</p>
+
+                    <h4>multiple networking applications</h4>
+                </section>
+
+                <section>
+                    <h3>Example Computer</h3>
+                    
+                    <p>IP Address: 127.0.0.1</p>
+
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Port</th>
+                                <th>Application</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>22</td>
+                                <td>SSH</td>
+                            </tr>
+                            <tr>
+                                <td>53</td>
+                                <td>DNS</td>
+                            </tr>
+                            <tr>
+                                <td>80</td>
+                                <td>HTTP</td>
+                            </tr>
+                            <tr>
+                                <td>587</td>
+                                <td>SMTP</td>
+                            </tr>
+                            <tr>
+                                <td>5190</td>
+                                <td>AIM</td>
+                            </tr>
+                            <tr>
+                                <td>28960</td>
+                                <td>Call of Duty</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <p>
+                        An application <i>multiplexer</i>.
+                    </p>
+                </section>
+
+                <section>
+                    <h2>Today: Application Layer</h2>
+
+                    <p>
+                        Applications that <i>utilize</i> TCP in order
+                        to provide networking to the user.
+                    </p>
+
+                    <ul>
+                        <li>HTTP - HyperText Transfer Protocol</li>
+                        <li>DNS - Domain Name System</li>
+                    </ul>
+                </section>
+
+                <section>
+                    <h2>Hyper Text</h2>
+
+                    <p>More than just text... Links? Images?</p>
+
+                    <ul>
+                        <li>Vannevar Bush (1945) - Memex</li>
+                        <li>Ted Nelson (1963) - Project Xanadu</li>
+                        <li>Douglas Engelbar (1968) - Mother of All Demos</li>
+                        <li>Tim Berners-Lee (1989) - World Wide Web</li>
+                    </ul>
+                </section>
+
+                <section>
+                    <h2>First Web Server</h2>
+
+                    <p>
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d1/First_Web_Server.jpg/640px-First_Web_Server.jpg"/>
+                    </p>
+
+                    <p>
+                        Implemented in C, went online on 12/25/1990.
+                    </p>
+                </section>
+
+                <section>
+                    <blockquote>
+                        HyperText is a way to link and access
+                        information of various kinds as a web of nodes
+                        in which the user can browse at
+                        will. Potentially, HyperText provides a single
+                        user-interface to many large classes of stored
+                        information such as reports, notes,
+                        data-bases, computer documentation and on-line
+                        systems help. We propose the implementation of
+                        a simple scheme to incorporate several
+                        different servers of machine-stored
+                        information already available at CERN,
+                        including an analysis of the requirements for
+                        information access needs by experiments... A
+                        program which provides access to the hypertext
+                        world we call a browser.
+                    </blockquote>
+
+                    <p>- Berners-Lee, 1990</p>
+                </section>
+
+                <section>
+                    <h2>Browser</h2>
+
+                    <ul>
+                        <li>Mosaic</li>
+                        <li>Netscape</li>
+                        <li>Lynx</li>
+                        <li>Internet Explorer</li>
+                    </ul>
+                </section>
+
+                <section>
+                    <h2>How does it work?</h2>
+
+                    <p>Think of Wikipedia, not Facebook.</p>
+
+                    <p>The web was originally for <i>fetching data</i>.</p>
+
+                    <pre><code data-trim>
+GET resource_name
+                    </code></pre>
+                </section>
+
+                <section>
+                    <h2>Let's try it.</h2>
+
+                    <p>Random website: 74.125.226.38</p>
+
+                    <pre><code data-trim>
+GET /
+                    </code></pre>
+                    
+                    <pre><code data-trim>
+GET /#q=test
+                    </code></pre>
+
+                    <p>Remember, HTTP uses port 80.</p>
+                </section>
+
+                <section>
+                    <h2>The server is lying to you.</h2>
+
+                    <p>
+                        Facebook doesn't load a file / when you
+                        request it. It goes off and <b>builds</b> one
+                        for you on the fly, then sends it to you.
+                    </p>
+                </section>
+
+                <section>
+                    <h2>HTTP 1.1</h2>
+
+                    <ul>
+                        <li>POST Requests</li>
+                        <li>Arbitrary Headers</li>
+                        <li>Authentication</li>
+                        <li>Caching</li>
+                        <li>Cookies!</li>
+                    </ul>
+                </section>
+
+                <section>
+                    <h2>Cookies</h2>
+
+                    <p>
+                        Magic values that the server tells you to save
+                        on your computer. When you give them back to
+                        the server, it knows who you are.
+                    </p>
+
+                    <p>
+                        <a href="http://www.google.com/patents/US5774670">
+                            Patented in 1995
+                        </a>
+                    </p>
+                </section>
+
+                <section>
+                    <h2>A Question</h2>
+
+                    <p>
+                        When you want to go to Google, do yo use their
+                        IP address (74.125.226.38)?
+                    </p>
+                </section>
+
+                <section>
+                    <h2>Domain Name System (DNS)</h2>
+
+                    <p>
+                        Answers the question "what is the IP address
+                        for 'google.com'?"
+                    </p>
+                </section>
+
+                <section>
+                    <h2>Domain Name System</h2>
+
+                    <ul>
+                        <li>Hierarchical</li>
+                        <li>13 Root Servers</li>
+                    </ul>
+
+                    <p>
+                        A worked example on the board for
+                        www.google.com.
+                    </p>
+                </section>
+
+                <section>
+                    <h2>It's just that easy.</h2>
+
+                    <ol>
+                        <li>Type in a website.</li>
+                        <li>Connect over TCP to your DNS servers (port 43).</li>
+                        <li>DNS looks up the IP address associated with the website.</li>
+                        <li>Connect over TCP to the IP address returned (port 80).</li>
+                        <li>Send an HTTP GET request for your resource.</li>
+                        <li>Receive the information, display to user.</li>
+                    </ol>
+                </section>
+
+                <section>
+                    <h2>Questions? Comments? Concerns?</h2>
+                </section>
+            </div>
+
+        </div>
+
+        <script src="lib/js/head.min.js"></script>
+        <script src="js/reveal.js"></script>
+
+        <script>
+
+         // Full list of configuration options available at:
+         // https://github.com/hakimel/reveal.js#configuration
+         Reveal.initialize({
+             controls: true,
+             progress: true,
+             history: true,
+             center: true,
+             slideNumber: true,
+
+             transition: 'slide', // none/fade/slide/convex/concave/zoom
+             
+             math: {
+                 mathjax: 'https://cdn.mathjax.org/mathjax/latest/MathJax.js',
+                 config: 'TeX-AMS_HTML-full'  // See http://docs.mathjax.org/en/latest/config-files.html
+             },
+             
+             // Optional reveal.js plugins
+             dependencies: [
+                 { src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+                 { src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+                 { src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+                 { src: 'plugin/highlight/highlight.js', async: true, condition: function() { return !!document.querySelector( 'pre code' ); }, callback: function() { hljs.initHighlightingOnLoad(); } },
+                 { src: 'plugin/zoom-js/zoom.js', async: true },
+                 { src: 'plugin/notes/notes.js', async: true },
+                 { src: 'plugin/math/math.js', async: true }
+             ]
+         });
+
+         Reveal.addEventListener( 'fragmentshown', function( event ) {
+             setTimeout(
+                 function() {
+                     MathJax.Hub.Rerender(document.querySelector(".slides .present"))
+                 }, 100); 
+         } );
+
+        </script>
+
+    </body>
+</html>

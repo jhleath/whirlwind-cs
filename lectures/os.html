@@ -1,0 +1,365 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+
+        <title>CS 1501 - Operating Systems</title>
+
+        <meta name="description" content="Introduction Lecture for CS 1501  - A Whirlwind Introduction to CS">
+        <meta name="author" content="Hunter Leath">
+
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+
+        <link rel="stylesheet" href="css/reveal.css">
+        <link rel="stylesheet" href="css/theme/moon.css" id="theme">
+
+        <!-- Code syntax highlighting -->
+        <link rel="stylesheet" href="lib/css/zenburn.css">
+
+        <!-- Printing and PDF exports -->
+        <script>
+         var link = document.createElement( 'link' );
+         link.rel = 'stylesheet';
+         link.type = 'text/css';
+         link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+         document.getElementsByTagName( 'head' )[0].appendChild( link );
+        </script>
+
+        <!--[if lt IE 9]>
+	<script src="lib/js/html5shiv.js"></script>
+	<![endif]-->
+    </head>
+
+    <body>
+
+        <div class="reveal">
+
+            <!-- Any section element inside of this container is displayed as a slide -->
+            <div class="slides">
+                <section>
+                    <h2>Operating Systems</h2>
+                    <h5>CS 1501 - Lecture 6</h5>
+                    <h5>Thursday, October 1</h5>
+                </section>
+                
+                <section>
+                    <h2>Last class recap:</h2>
+
+                    <ul>
+                        <li>Assembly, Assemblers</li>
+                        <li>Code Generation, Compilation</li>
+                        <li>Calling Convention</li>
+                    </ul>
+
+                    <br/><br/>
+
+                    <div class="fragment">
+                        <h2>Omitted from Class:</h2>
+
+                        <ul>
+                            <li>Lexing - What symbols have we written?</li>
+                            <li>Parsing - What do the symbols mean?</li>
+                            <li>Type Checking - Are the programmers using the correct types?</li>
+                            <li>Optimization - Can we make the program faster?</li>
+                            <li>Interpretation - Can we run the program on the fly?</li>
+                        </ul>
+                    </div>
+                </section>
+
+                <section>
+                    <p>
+                        We talked about the construction of
+                        <b>transistors</b> as electrical switches. We
+                        used those to build <b>logic gates</b> for
+                        boolean algebra. We added in <b>state</b> by
+                        creating feedback of logic gates, and suddenly
+                        we could store memory and count. Next, we
+                        built a <b>processor</b> with our logic
+                        components and state that runs <i>any
+                            program</i> expressed as binary.
+                    </p>
+
+                    <p>
+                        Last class, we talked about how <b>programs are
+                        compiled</b> to be run on our simple processor
+                        so we didn't have to program in binary.
+                    </p>
+                </section>
+
+                <section>
+                    <h2>Using Math</h2>
+
+                    <ol>
+                        <li>General Processor: \( f(\hat{g}, x) = g(x) \)</li>
+                        <li>Programming Language: \( a(i_t) = i_c \)</li>
+                    </ol>
+                </section>
+
+                <section>
+                    <h2>What about multiple programs...?</h2>
+
+                    <p class="fragment">
+                        Our processor can run single programs great,
+                        and we have a way to transform higher level
+                        languages into machine code. But we can still
+                        only run one...
+                    </p>
+                </section>
+
+                <section>
+                    <h2>How can we run multiple programs?</h2>
+
+                    <p>
+                        We currently have something that will run
+                        (any) single program.
+                    </p>
+                </section>
+
+                <section>
+                    <h2>This is just the tip of the iceberg.</h2>
+
+                    <p>
+                        It is necessary to get a sense for all the
+                        topics in Operating Systems in order to
+                        understand how they work, but we cannot cover
+                        each one in depth.
+                    </p>
+                </section>
+
+                <section>
+                    <h2>Memory (RAM)</h2>
+
+                    <p>
+                        A place to put things. Every space has an
+                        address.
+                    </p>
+                </section>
+
+                <section>
+                    <h2>Multitasking</h2>
+
+                    <p>
+                        There are two basic ways that we can do
+                        multitasking:
+                    </p>
+
+                    <ol>
+                        <li>
+                            Preemptive - We give each program a set
+                            amount of time.
+                        </li>
+                        <li>
+                            Nonpreemptive - Programs let us know when
+                            they can be switched out.
+                        </li>
+                    </ol>
+                </section>
+
+                <section>
+                    <h2>Problems with Nonpreemptive Multitasking</h2>
+
+                    <p>
+                        What if we have a program that is broken and
+                        never tells us that it is time to switch?
+                    </p>
+                </section>
+
+                <section>
+                    <p>
+                        One of the programs has to decide how long
+                        another will run. How do we stop the other
+                        program?
+                    </p>
+                </section>
+
+                <section>
+                    <h2>Processor Interrupts</h2>
+
+                    <p>
+                        We can <i>interrupt</i> the processor at
+                        nearly anytime and jump to a specific set of
+                        code to execute.
+                    </p>
+
+                    <p>
+                        How often should we interrupt the programs?
+
+                        <span class="fragment">~4 kilohertz</span>
+                    </p>
+                </section>
+
+                <section>
+                    <h2>Scheduling</h2>
+
+                    <p>
+                        Now, we have to determine what program to run
+                        next... What are some ways that we could do
+                        this?
+                    </p>
+
+                    <div class="fragment">
+                        <h3>Stride Scheduling</h3>
+
+                        <ul>
+                            <li>Used in Linux</li>
+                            <li>"Change the internal clock for each process"</li>
+                        </ul>
+                    </div>
+                </section>
+
+                <section>
+                    <h2>System Calls</h2>
+
+                    <p>
+                        We can call into the system code that has
+                        prividged access to the processor and can do
+                        anything!
+                    </p>
+
+                    <ol>
+                        <li>Process Control</li>
+                        <li>Interaction with Files</li>
+                        <li>Device Management</li>
+                        <li>Information Management</li>
+                        <li>Networking</li>
+                    </ol>
+                </section>
+
+                <section>
+                    <h2>
+                        Why can't the user programs do this
+                        themselves?
+                    </h2>
+
+                    <ol>
+                        <li><b>Access Control</b></li>
+                        <li>Easier Implementation</li>
+                    </ol>
+                </section>
+
+                <section>
+                    <h2>Processor "Modes"</h2>
+
+                    <p>
+                        We can give the processor the ability to
+                        restrict the instructions that a program can
+                        execute.
+                    </p>
+
+                    <ol>
+                        <li>Kernel Mode</li>
+                        <li>User Mode</li>
+                    </ol>
+                </section>
+
+                <section>
+                    <p>
+                        Individual processes should not know that
+                        other processes are being run on the same
+                        machine.
+                    </p>
+                </section>
+
+                <section>
+                    <h2>Virtual Memory</h2>
+
+                    <p>
+                        We want to prevent processes from storing data
+                        in memory where other processes could store
+                        information.
+                    </p>
+                </section>
+
+                <section>
+                    <h2>Operating Systems</h2>
+
+                    <ol>
+                        <li>Manages Resources</li>
+                        <li>Provides Abstractions</li>
+                    </ol>
+                </section>
+
+                <section>
+                    <h2>Processor Checklist</h2>
+
+                    <ol>
+                        <li>Interrupts</li>
+                        <li>Access Modes</li>
+                        <li>Virtual Address Translation</li>
+                    </ol>
+                </section>
+
+                <section>
+                    <h2>Some Quick History</h2>
+                    <p>Multics, UNIX, Linux, oh my!</p>
+                </section>
+
+                <section>
+                    <h2>Rest of the Semester</h2>
+
+                    <ol>
+                        <li>Peripherals (Screen, Mouse, Keyboard, Memory, USB)</li>
+                        <li>Networking</li>
+                        <li>HTTP</li>
+                        <li>Algorithms</li>
+                        <li>Putting it All Together</li>
+                        <li>Bonus Lecture!</li>
+                    </ol>
+
+                    <p class="fragment">Exam will be posted for this weekend!</p>
+                </section>
+
+                <section>
+                    <h2>Questions? Comments? Concerns?</h2>
+                </section>
+            </div>
+
+        </div>
+
+        <script src="lib/js/head.min.js"></script>
+        <script src="js/reveal.js"></script>
+
+        <script>
+
+         // Full list of configuration options available at:
+         // https://github.com/hakimel/reveal.js#configuration
+         Reveal.initialize({
+             controls: true,
+             progress: true,
+             history: true,
+             center: true,
+             slideNumber: true,
+
+             transition: 'slide', // none/fade/slide/convex/concave/zoom
+             
+             math: {
+                 mathjax: 'https://cdn.mathjax.org/mathjax/latest/MathJax.js',
+                 config: 'TeX-AMS_HTML-full'  // See http://docs.mathjax.org/en/latest/config-files.html
+             },
+             
+             // Optional reveal.js plugins
+             dependencies: [
+                 { src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+                 { src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+                 { src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+                 { src: 'plugin/highlight/highlight.js', async: true, condition: function() { return !!document.querySelector( 'pre code' ); }, callback: function() { hljs.initHighlightingOnLoad(); } },
+                 { src: 'plugin/zoom-js/zoom.js', async: true },
+                 { src: 'plugin/notes/notes.js', async: true },
+                 { src: 'plugin/math/math.js', async: true }
+             ]
+         });
+
+         Reveal.addEventListener( 'fragmentshown', function( event ) {
+             setTimeout(
+                 function() {
+                     MathJax.Hub.Rerender(document.querySelector(".slides .present"))
+                 }, 100); 
+         } );
+
+        </script>
+
+    </body>
+</html>
